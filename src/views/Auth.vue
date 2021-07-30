@@ -1,12 +1,13 @@
 <template>
-  <div class="home">
-    Home
-  </div>
+  Auth
 </template>
 
 <script>
-
 export default {
-  name: "Home",
-};
+  name: 'Auth',
+}
 </script>
+
+<style lang="scss">
+
+</style>

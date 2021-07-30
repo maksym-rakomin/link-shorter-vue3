@@ -1,10 +1,26 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <component :is="getLayout" />
 </template>
+
+<script>
+import { useRoute } from 'vue-router'
+import defaultLayout from '@/layouts/default.vue'
+import authLayout from '@/layouts/auth.vue'
+
+export default {
+  name: 'App',
+  components: { defaultLayout, authLayout },
+  computed: {
+    getLayout() {
+      if (useRoute().meta.layout) {
+        return useRoute().meta.layout
+      } else {
+        return 'defaultLayout'
+      }
+    },
+  },
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -13,18 +29,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
